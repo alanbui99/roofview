@@ -39,15 +39,15 @@ passport.serializeUser(Users.serializeUser());
 passport.deserializeUser(Users.deserializeUser());
 
 mongoose.set('useUnifiedTopology', true);
-mongoose.connect("mongodb+srv://tbui:disboyfc@cluster0-eehg8.mongodb.net/test?retryWrites=true&w=majority", {
-    useNewUrlParser: true,
-    useCreateIndex: true
-}).then(() => {
-    console.log("connect to DB!");
-}).catch(err =>{
-    console.log("ERROR", err.message);
-});
-// mongoose.connect("mongodb://localhost:27017/RooftopFantasy", {useNewUrlParser: true});
+// mongoose.connect("mongodb+srv://tbui:disboyfc@cluster0-eehg8.mongodb.net/test?retryWrites=true&w=majority", {
+//     useNewUrlParser: true,
+//     useCreateIndex: true
+// }).then(() => {
+//     console.log("connect to DB!");
+// }).catch(err =>{
+//     console.log("ERROR", err.message);
+// });
+mongoose.connect("mongodb://localhost:27017/RooftopFantasy", {useNewUrlParser: true});
 
 app.use(function(req, res, next) {
     res.locals.currentUser = req.user;
@@ -59,6 +59,10 @@ app.use('/bars',barRoutes);
 app.use('/', indexRoutes);
 app.use('/bars/:id/comments', commentRoutes);
 
-app.listen(process.env.PORT || 5000, function(){
-     console.log("RooftopReview running");
+// app.listen(process.env.PORT || 5000, function(){
+//      console.log("RooftopReview running");
+// })
+
+app.listen(3000, function() {
+    console.log("RooftopReview running");
 })
