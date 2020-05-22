@@ -59,6 +59,6 @@ app.use('/bars',barRoutes);
 app.use('/', indexRoutes);
 app.use('/bars/:id/comments', commentRoutes);
 
-app.listen(3000,function(){
-    console.log("Rooftop Fantasy running");
+app.listen(process.env.PORT || 5000, function(){
+     console.log("RooftopReview running");
 })
