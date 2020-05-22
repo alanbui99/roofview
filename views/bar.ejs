@@ -1,0 +1,85 @@
+<%- include("partials/header") %>
+
+
+<section id="barHome" class="container mt-5">
+    <h3 class="text-center sectionHeader">
+        <i class="fas fa-glass-martini-alt mr-3"></i>Highlighted Bars
+    </h3>
+    
+    
+    <nav id="searchNav" class="navbar navbar-expand navbar-light bg-white shadow-sm">
+    <div class="container">
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sort By
+              </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <form class="sortForm" action="/campgrounds" method="GET">
+                <input type="text" name="sortby" value="rateAvg" class="d-none">
+                <button type="submit" class="dropdown-item">Highest Rated</button>
+              </form>
+              <form class="sortForm" action="/campgrounds" method="GET">
+                <input type="text" name="sortby" value="rateCount" class="d-none">
+                <button type="submit" class="dropdown-item">Most Reviewed</button>
+              </form>
+              <form class="sortForm" action="/campgrounds" method="GET">
+                <input type="text" name="sortby" value="priceLow" class="d-none">
+                <button type="submit" class="dropdown-item">Lowest Price</button>
+              </form>
+              <form class="sortForm" action="/campgrounds" method="GET">
+                <input type="text" name="sortby" value="priceHigh" class="d-none">
+                <button type="submit" class="dropdown-item">Highest Price</button>
+              </form>
+              <a href="/campgrounds" href class="dropdown-item">Reset</a>
+            </div>
+          </li>
+            <li class="nav-item ml-3">
+                <a class="nav-link" href="/bars/new">
+                    Add New Bar
+                </a>
+            </li>
+        </ul>
+        <div class="d-none d-md-block">
+          <form action="/campgrounds" method="GET" class="input-group">
+            <input type="text" class="form-control" type="text" name="search" placeholder="Search Campgrounds..." aria-label="Search">
+            <div class="input-group-append">
+              <button class="btn btn-danger border-0" type="submit">
+                    <i class="fa fa-search"></i>
+                  </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+    
+    
+    <div class="row">
+        <% bars.forEach(function(bar){ %>
+        <div class="col-md-6 col-lg-4 d-flex justify-content-center">
+            <div class="card shadow border-0 mt-4" style="width: 22rem;">
+                <a href="/bars/<%=bar.id%>">
+                    <img src="<%=bar.image%>" class="card-img-top thumbnail" alt="Image"> 
+                </a>
+                <div class="card-body">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                        <a class="text-info" href="/bars/<%=bar.id%>">
+                            <h5 class="card-title"><%= bar.name %></h5>
+                        </a>
+                        </li>
+                        <li id="thumbnailPrice"class="list-inline-item float-right text-success">
+                            <%= bar.price %>
+                        </li>    
+                    </ul>                                   
+                </div>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+</section>
+       
+<%- include("partials/footer") %>
+

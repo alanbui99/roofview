@@ -1,0 +1,79 @@
+body {
+    /* background-image: url("https://images.unsplash.com/photo-1505860125062-3ce932953cf5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"); */
+    background-size: cover;
+    background-color: #fff;      
+    padding-top: 62px;
+    font-family: 'Vollkorn', serif;
+}
+/* @media (max-width: 979px) {
+  body {
+    padding-top: 0px;
+  }
+}   */
+
+#delete-form {
+    display:inline;
+}
+
+#slideshow {
+    max-height: 380px;
+}
+
+#header {
+    padding: auto 0;
+    margin-left: 0;
+    background: rgba(14, 15, 15, 0.3);
+}
+
+.jumbotronText {
+    font-family: 'EB Garamond', serif;
+    color: white;
+    margin-bottom: 0;
+    margin-top: 10px;
+    text-shadow: 5px 5px 5px #0E0F0F;
+    font-weight: normal;
+}
+
+#brand {
+    font-family: 'EB Garamond', serif;
+    font-weight: bolder;
+    font-size: 1.5em;
+}
+
+.thumbnail {
+    height: 250px;
+}
+
+#searchBar {
+    width: 20em;
+}
+
+#navBar {
+    font-size: 16px;
+}
+
+#dollarSign {
+    font-weight: bolder;
+    font-size: 1.25rem;
+    letter-spacing: 5px;
+}
+
+#thumbnailPrice {
+    font-weight: bolder;
+    letter-spacing: 3px;
+}
+
+.sectionHeader {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/* Google Maps */
+#map {
+    height: 300px;
+    width: 100%;
+}
+
+#show-img {
+    max-height: 400px;
+}

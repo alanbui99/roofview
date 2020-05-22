@@ -1,0 +1,91 @@
+<%- include("partials/header") %>
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-sm-10 col-md-9 col-lg-8">
+            <div class="card shadow border-0">
+                <div class="card-body">
+                    <h1 class="text-center">Edit <%= bar.name %></h1>
+                    <p class="text-muted"><small>Fields marked * are required</small></p>
+                    <form action="/bars/<%= bar._id %>?_method=PUT" method="POST">
+                        <div class="form-group">
+                            <label>Bar Name*</label>
+                            <input type="text" class="form-control" name="bar[name]" id="barName" value="<%= bar.name %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="imageURL">Image URL*</label>
+                            <input type="text" class="form-control" name="bar[image]" id="imageURL" value="<%= bar.image %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="desc">Description*</label>
+                            <textarea class="form-control" name="bar[desc]" id="desc" required><%= bar.desc %></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Address*</label>
+                            <input class="form-control" type="text" name="bar[location]" id="location" value="<%= bar.location %>">
+                        </div>
+
+                        <div class="form-group">
+                            <label>How expensive is this bar?*</label>
+                            <select class="form-control" name="bar[price]" required>
+                                <option value="<%= bar.price %>"><%= bar.price %></option>
+                                <option value="$">$</option>
+                                <option value="$$">$$</option>
+                                <option value="$$$">$$$</option>
+                                <option value="$$$$">$$$$</option>
+                                <option value="$$$$$">$$$$$</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-info btn-block mb-2">Edit</button>
+                    </form>
+                    <a href="/bars/<%= bar.id %>" class="text-info">Go back</a>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
+
+
+<!-- <h2 class="text-center">Edit <%= bar.name %></h2>
+<div style="width: 30%; margin: 30px auto;">
+    <form action="/bars/<%= bar._id %>?_method=PUT" method="POST">
+        <div class="form-group">
+            <label for="barName">Bar Name</label>
+            <input type="text" class="form-control" name="bar[name]" id="barName" value="<%= bar.name %>">
+        </div>
+        <div class="form-group">
+            <label for="imageURL">Image URL</label>
+            <input type="text" class="form-control" name="bar[image]" id="imageURL" value="<%= bar.image %>">
+        </div>
+        
+        <div class="form-group">
+            <label for="desc">Description</label>
+            <input type="text" class="form-control" name="bar[desc]" id="desc" value="<%= bar.desc %>">
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input class="form-control" type="text" name="bar[location]" id="location" value="<%= bar.location %>">
+        </div>
+        <div class="form-group">
+            <label>How expensive is this bar?</label>
+            <select class="form-control" name="bar[price]" value="<%= bar.price %>">
+                <option value="<%= bar.price %>"><%= bar.price %></option>
+                <option value="$">$</option>
+                <option value="$$">$$</option>
+                <option value="$$$">$$$</option>
+                <option value="$$$$">$$$$</option>
+                <option value="$$$$$">$$$$$</option>
+            </select>
+        </div>
+        
+        <button type="submit" class="btn btn-outline-info btn-block mb-2">Submit</button>
+    </form>    
+    <a href="/bars/<%= bar.id %>" class="text-info">Go back</a>
+</div> -->
+
+
+<%- include("partials/footer") %>
