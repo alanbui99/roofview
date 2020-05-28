@@ -68,10 +68,10 @@ app.use('/bars/:id/comments', commentRoutes);
 app.use('/blogs', blogRoutes);
 app.use('/blogs/:id/comments', blogCommentRoutes);
 
-// app.listen(process.env.PORT || 5000, function(){
-//      console.log("RooftopReview running");
-// })
-
-app.listen(3000, function() {
-    console.log("RooftopReview running");
+app.listen(process.env.PORT || 5000, function(){
+     console.log("RooftopReview running");
 })
+
+// app.listen(3000, function() {
+//     console.log("RooftopReview running");
+// })
