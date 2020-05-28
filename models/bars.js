@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 var barSchema = new mongoose.Schema({
     name: String,
+    avgRating: Number,
     price: String,
     image: String,
     desc: String,

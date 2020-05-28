@@ -2,16 +2,22 @@ var express = require("express"),
     router = express.Router(),
     Users = require('../models/users'),
     Bars = require('../models/bars'),
+    Blogs = require('../models/blogs'),
     passport = require("passport");
 
 //root route
 router.get("/", function(req, res){
     Bars.find({}, function(err,bars){
         if (err) {
-            console.log(err)
-        }
-        else {
-            res.render("home", {bars: bars});        
+            console.log(err);
+        } else {
+            Blogs.find({}, function(err, blogs) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.render("home", {bars: bars, blogs: blogs});        
+                }
+            })            
         }
     })  
 });
@@ -43,7 +49,7 @@ router.post("/login", passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true,
-    successFlash: 'Welcome!'
+    successFlash: 'Welcome back!'
 }),function(req, res) {  
 })
 //logout route

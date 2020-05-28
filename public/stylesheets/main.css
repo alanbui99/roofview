@@ -2,14 +2,28 @@ body {
     /* background-image: url("https://images.unsplash.com/photo-1505860125062-3ce932953cf5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"); */
     background-size: cover;
     background-color: #fff;      
-    padding-top: 62px;
+    margin-top: 48px;
     font-family: 'Vollkorn', serif;
 }
 /* @media (max-width: 979px) {
   body {
     padding-top: 0px;
   }
-}   */
+} */
+
+@media (max-width: 1000px) {
+    #addbar {
+        width: 10px;
+    }
+}
+
+#startItem {
+    padding-top:20px;
+}
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
 
 #delete-form {
     display:inline;
@@ -41,7 +55,13 @@ body {
 }
 
 .thumbnail {
-    height: 250px;
+    height: 200px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.homeCard {
+    border-radius: 15px;
 }
 
 #searchBar {
@@ -60,7 +80,11 @@ body {
 
 #thumbnailPrice {
     font-weight: bolder;
-    letter-spacing: 3px;
+    /* letter-spacing: px; */
+}
+
+#rating {
+  font-family: "Times New Roman", Times, serif;
 }
 
 .sectionHeader {
@@ -76,4 +100,18 @@ body {
 
 #show-img {
     max-height: 400px;
+}
+
+#commentSection {
+    border: none;
+}
+
+#blogThumbnailImg {
+    max-height: 350px;
+}
+
+#homeBlogThumbnail {
+    height: 300px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }

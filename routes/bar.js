@@ -17,26 +17,30 @@ var geocoder = NodeGeocoder(options);
 
 //INDEX - show all bars
 router.get("/", function(req, res){
-    Bars.find({}, function(err,bars){
-        if (err) {
-            console.log(err)
-        }
-        else {
-            res.render("bar", {bars: bars, page: 'bars'});        
-        }
-    })  
+    if (req.query.search){
+        
+    } else {
+        // eval(require('locus'));
+        Bars.find({}, function(err,bars){
+            if (err) {
+                console.log(err)
+            }
+            else {
+                res.render("./bars/index", {bars: bars, page: 'bars'});        
+            }
+        })
+    }
 });
 
 //NEW - show form to create new bar
 router.get("/new", middleware.isLoggedIn, function(req, res){
-    res.render("new");
+    res.render("./bars/new");
 })
 
-//CREATE - add new bar to DB
 
-//CREATE - add new campground to DB
+//CREATE - add new bar to DB
 router.post("/", middleware.isLoggedIn, function(req, res){
-  // get data from form and add to campgrounds array
+  // get data from form and add to bars array
   var name = req.body.name;
   var image = req.body.image;
   var desc = req.body.desc;
@@ -72,23 +76,6 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 });
 
 
-// router.post("/", middleware.isLoggedIn, function(req,res){
-//     console.log(req.body.price);
-//     var author = {id: req.user._id, username: req.user.username};
-//     var newBar = {name: req.body.name, image: req.body.image, desc: req.body.desc, price: req.body.price, author:author};
-//     //Create a new bar and save to DB
-//     Bars.create(newBar, function(err, newlyCreated){
-//         if (err) {
-//             console.log(err);
-//         }
-//         else {
-//             console.log(newlyCreated);
-//             //redirect back to bars page
-//             res.redirect("/bars");        
-//         }
-//     })
-// })
-
 //SHOW - show more info about one campground
 router.get("/:id", function(req,res) {
     Bars.findById(req.params.id).populate('comments').exec(function(err, foundBar){
@@ -97,14 +84,15 @@ router.get("/:id", function(req,res) {
             res.redirect('back');
         }
         else {
-            res.render("show", {bar:foundBar});
+            res.render("./bars/show", {bar:foundBar});
         }
     });
 })
 //EDIT - show form to edit bar info
 router.get("/:id/edit", middleware.checkBarOwnership, function(req, res) {
+    console.log('here');
     Bars.findById(req.params.id, function(err, foundBar) {
-        res.render("edit", {bar: foundBar});
+        res.render("./bars/edit", {bar: foundBar});
     });
 });
 //UPDATE - update bar info
@@ -118,7 +106,6 @@ router.put("/:id", middleware.checkBarOwnership, function(req, res){
     req.body.bar.lat = data[0].latitude;
     req.body.bar.lng = data[0].longitude;
     req.body.bar.location = data[0].formattedAddress;
-    // var newData = {name: req.body.name, image: req.body.image, desc: req.body.desc, location: location, }
     Bars.findByIdAndUpdate(req.params.id, req.body.bar, function(err, editedBar){
         if(err){
             req.flash("error", err.message);
@@ -131,17 +118,6 @@ router.put("/:id", middleware.checkBarOwnership, function(req, res){
   });
 });
 
-
-// router.put("/:id", middleware.checkBarOwnership, function(req, res) {
-//     Bars.findByIdAndUpdate(req.params.id, req.body.bar, function(err, editedBar) {
-//         if (err) {
-//             console.log(err);
-//             res.redirect("/bars/" + req.params.id + "edit");
-//         } else {
-//             res.redirect("/bars/" +req.params.id);
-//         }
-//     })
-// })
 //DELETE - delete bar
 router.delete("/:id", middleware.checkBarOwnership, function(req, res) {
     Bars.findByIdAndRemove(req.params.id, function(err) {

@@ -14,14 +14,14 @@
     </head>
     
   <body>
-    <nav id="navBar" class="navbar fixed-top navbar-expand-lg navbar-dark bg-info">
+    <nav id="navBar" class="navbar navbar-top navbar-expand-lg navbar-dark bg-info py-1 fixed-top">
         <div class="container">
-            <a id="brand" class="navbar-brand" href="/">RooftopReview</a>
+            <a id="brand" class="navbar-brand pt-0" href="/">RooftopReview</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav mr-auto">
                     <li id="bars" class="nav-item">
                         <a class="nav-link" href="/bars"><i class="fas fa-glass-martini-alt"></i>
 
@@ -31,8 +31,8 @@ Bars</a>
                         <a class="nav-link" href="/blogs"> <i class="fas fa-blog"></i> Blogs</a>
                     </li>
                     <li>
-                        <form class="form-inline">
-                            <input id="searchBar" class="form-control input-large mr-sm-2" type="search" placeholder="Search Bars by Name, City & Country" aria-label="Search">
+                        <form action="/bars" method="GET" class="form-inline my-2 my-lg-0">
+                            <input id="searchBar" name="search" class="form-control input-large mr-sm-2" type="search" placeholder="Search Bars by Name, City & Country" aria-label="Search">
                             <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
                         </form>
                     </li>

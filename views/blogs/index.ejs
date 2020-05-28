@@ -1,0 +1,118 @@
+<%- include("../partials/header") %>
+
+
+ <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Blog Entries Column -->
+      <div class="col-md-8">
+        <p>
+            <h3 class="mt-4 sectionHeader d-inline">
+                <i class="fas fa-blog mr-2"></i>Highlighted Blogs
+            </h3>
+            <a href="/blogs/new">
+                <button class="btn btn-outline-success d-inline float-right">
+                    <i class="fas fa-edit mr-2"></i>Write Blog
+                </button>
+            </a>
+            
+        </p>
+          
+        <% blogs.forEach(function(blog) { %>
+
+        <!-- Blog Post -->
+        <div class="card mb-4">
+            <a href="/blogs/<%= blog.id %>">
+                <img id="blogThumbnailImg" class="card-img-top img-fluid" src="<%= blog.image %>" alt="Card image cap">
+            </a>
+          <div class="card-body">
+              <a href="/blogs/<%= blog.id %>" class="text-info">
+                  <h4 class="card-title"> <%= blog.title %></h4>
+              </a>
+
+            <p class="card-text"><%- blog.body.substring(0,100) %>...</p>
+            <a href="/blogs/<%= blog.id %>" class="btn btn-outline-info btn-sm">Read More &rarr;</a>
+          </div>
+          <div class="card-footer text-muted">
+            Posted on <%= blog.created.toLocaleString() %> by
+            <a href="#" class="ml-1 text-info"><%=blog.author.username%></a>
+          </div>
+        </div>
+
+        <% }) %>
+
+        <!-- Pagination -->
+        <ul class="pagination justify-content-center mb-4">
+          <li class="page-item">
+            <a class="page-link" href="#">&larr; Older</a>
+          </li>
+          <li class="page-item disabled">
+            <a class="page-link" href="#">Newer &rarr;</a>
+          </li>
+        </ul>
+
+      </div>
+
+      <!-- Sidebar Widgets Column -->
+      <div class="col-md-4">
+
+        <!-- Search Widget -->
+        <div class="card my-4">
+          <h5 class="card-header">Search</h5>
+          <div class="card-body">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button">Go!</button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categories Widget -->
+        <div class="card my-4">
+          <h5 class="card-header">Categories</h5>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#">Rooftop Bar</a>
+                  </li>
+                  
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#">Traveling</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+<%- include("../partials/footer") %>
+
+
+
+
+
+
+
+
+
+
+
+

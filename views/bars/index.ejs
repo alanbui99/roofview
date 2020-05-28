@@ -1,14 +1,14 @@
-<%- include("partials/header") %>
+<%- include("../partials/header") %>
 
 
-<section id="barHome" class="container mt-5">
-    <h3 class="text-center sectionHeader">
+<section id="barHome" class="container-fluid mt-5">
+    <h3 id="startItem"class="text-center sectionHeader">
         <i class="fas fa-glass-martini-alt mr-3"></i>Highlighted Bars
     </h3>
     
     
     <nav id="searchNav" class="navbar navbar-expand navbar-light bg-white shadow-sm">
-    <div class="container">
+    <div class="container-fluid">
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item dropdown">
@@ -56,15 +56,15 @@
   </nav>
     
     
-    <div class="row">
+    <div class="row d-flex justify-content-center">
         <% bars.forEach(function(bar){ %>
-        <div class="col-md-6 col-lg-4 d-flex justify-content-center">
-            <div class="card shadow border-0 mt-4" style="width: 22rem;">
+        <div class="card-deck col-sm-6 col-lg-4 col-xl-3">
+            <div class="homeCard card shadow border-0 mt-4" style="width: 22rem;">
                 <a href="/bars/<%=bar.id%>">
-                    <img src="<%=bar.image%>" class="card-img-top thumbnail" alt="Image"> 
+                    <img src="<%=bar.image%>" class="card-img-top thumbnail img-fluid" alt="Image"> 
                 </a>
                 <div class="card-body">
-                    <ul class="list-inline">
+                    <ul class="list-inline mb-0" style="height: 1.5em;">
                         <li class="list-inline-item">
                         <a class="text-info" href="/bars/<%=bar.id%>">
                             <h5 class="card-title"><%= bar.name %></h5>
@@ -73,7 +73,21 @@
                         <li id="thumbnailPrice"class="list-inline-item float-right text-success">
                             <%= bar.price %>
                         </li>    
-                    </ul>                                   
+                    </ul>
+                    <ul class="list-inline" style="height: 0.25em">
+                        <% if (bar.comments.length > 0) { %>
+                        <li class="list-inline-item float-right"><small class="fas fa-star text-danger"></small>
+                            <strong><%= bar.avgRating.toFixed(1) %></strong>
+                        </li>
+                        <% } %>
+                        <li id="rating" class="list-inline-item text-muted">
+                            <% if (bar.comments.length > 1) {%>
+                            <%= bar.comments.length %> Reviews
+                            <% } else {%>
+                            <%= bar.comments.length %> Review
+                            <%}%>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -81,5 +95,5 @@
     </div>
 </section>
        
-<%- include("partials/footer") %>
+<%- include("../partials/footer") %>
 
