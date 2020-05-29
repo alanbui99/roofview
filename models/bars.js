@@ -9,6 +9,8 @@ var barSchema = new mongoose.Schema({
     location: String,
     lat: Number,
     lng: Number,
+    city: String,
+    country: String,
     author: {
         id: { 
             type: mongoose.Schema.Types.ObjectId,
@@ -21,7 +23,8 @@ var barSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Comment"
         }
-    ]
+    ],
+    ratingCount: Number
 });
 
 module.exports = mongoose.model("Bar", barSchema);

@@ -2,68 +2,60 @@
 
 
 <section id="barHome" class="container-fluid mt-5">
-    <h3 id="startItem"class="text-center sectionHeader">
-        <i class="fas fa-glass-martini-alt mr-3"></i>Highlighted Bars
-    </h3>
-    
-    
-    <nav id="searchNav" class="navbar navbar-expand navbar-light bg-white shadow-sm">
-    <div class="container-fluid">
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Sort By
-              </a>
+    <ul class="list-inline pt-3 row">
+        <div class="list-inline-item col-4 text-center">
+            <a class="nav-link dropdown-toggle text-dark font-weight-bold d-inline" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <form class="sortForm" action="/campgrounds" method="GET">
-                <input type="text" name="sortby" value="rateAvg" class="d-none">
+              <form class="sortForm" action="/bars" method="GET">
+                <input type="text" name="sort" value="rateAvg" class="d-none">
                 <button type="submit" class="dropdown-item">Highest Rated</button>
               </form>
-              <form class="sortForm" action="/campgrounds" method="GET">
-                <input type="text" name="sortby" value="rateCount" class="d-none">
+              <form class="sortForm" action="/bars" method="GET">
+                <input type="text" name="sort" value="rateCount" class="d-none">
                 <button type="submit" class="dropdown-item">Most Reviewed</button>
               </form>
-              <form class="sortForm" action="/campgrounds" method="GET">
-                <input type="text" name="sortby" value="priceLow" class="d-none">
-                <button type="submit" class="dropdown-item">Lowest Price</button>
+              <form class="sortForm" action="/bars" method="GET">
+                <input type="text" name="sort" value="priceLow" class="d-none">
+                <button type="submit" class="dropdown-item">Price: Low to High</button>
               </form>
-              <form class="sortForm" action="/campgrounds" method="GET">
-                <input type="text" name="sortby" value="priceHigh" class="d-none">
-                <button type="submit" class="dropdown-item">Highest Price</button>
+              <form class="sortForm" action="/bars" method="GET">
+                <input type="text" name="sort" value="priceHigh" class="d-none">
+                <button type="submit" class="dropdown-item">Price: High to Low</button>
               </form>
-              <a href="/campgrounds" href class="dropdown-item">Reset</a>
             </div>
-          </li>
-            <li class="nav-item ml-3">
-                <a class="nav-link" href="/bars/new">
-                    Add New Bar
-                </a>
-            </li>
-        </ul>
-        <div class="d-none d-md-block">
-          <form action="/campgrounds" method="GET" class="input-group">
-            <input type="text" class="form-control" type="text" name="search" placeholder="Search Campgrounds..." aria-label="Search">
-            <div class="input-group-append">
-              <button class="btn btn-danger border-0" type="submit">
-                    <i class="fa fa-search"></i>
-                  </button>
-            </div>
-          </form>
         </div>
-      </div>
-    </div>
-  </nav>
+
+        
+        <div class="list-inline-item col-4 text-center m-0 p-0">
+            <h3 id="startItem"class="text-center sectionHeader d-inline">
+            <i class="fas fa-glass-martini-alt mr-3"></i>Highlighted Bars
+            </h3>
+        </div>
+        
+        <div class="col-4"></div>
+        
+    </ul>
+                
+
     
+    <% if (typeof numResults !== 'undefined') { %>
+        <h4 class="text-center mt-2">
+            <% if (numResults > 1) { %>
+                <%= numResults %> results were found.
+            <% } else { %>
+                <%= numResults %> result was found.
+            <% } %>
+        </h4>
+        <% } %>
     
     <div class="row d-flex justify-content-center">
         <% bars.forEach(function(bar){ %>
         <div class="card-deck col-sm-6 col-lg-4 col-xl-3">
-            <div class="homeCard card shadow border-0 mt-4" style="width: 22rem;">
+            <div class="homeCard card shadow border-0 mt-4">
                 <a href="/bars/<%=bar.id%>">
                     <img src="<%=bar.image%>" class="card-img-top thumbnail img-fluid" alt="Image"> 
                 </a>
-                <div class="card-body">
+                <div class="card-body pb-1">
                     <ul class="list-inline mb-0" style="height: 1.5em;">
                         <li class="list-inline-item">
                         <a class="text-info" href="/bars/<%=bar.id%>">
@@ -74,7 +66,7 @@
                             <%= bar.price %>
                         </li>    
                     </ul>
-                    <ul class="list-inline" style="height: 0.25em">
+                    <ul class="list-inline mb-4" style="height: 0.25em">
                         <% if (bar.comments.length > 0) { %>
                         <li class="list-inline-item float-right"><small class="fas fa-star text-danger"></small>
                             <strong><%= bar.avgRating.toFixed(1) %></strong>
@@ -88,6 +80,9 @@
                             <%}%>
                         </li>
                     </ul>
+                    <small class="text-muted pt-2">
+                        <i class="fas fa-map-marker-alt mr-1"></i><%= bar.city %>, <%= bar.country %>
+                    </small>
                 </div>
             </div>
         </div>

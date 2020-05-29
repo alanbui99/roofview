@@ -18,15 +18,51 @@ var geocoder = NodeGeocoder(options);
 //INDEX - show all bars
 router.get("/", function(req, res){
     if (req.query.search){
+        req.query.search = req.query.search.toLowerCase();
+        if (req.query.search === 'usa' || req.query.search === 'america' || req.query.search === 'us'){
+            req.query.search = 'United States';
+        }
+        var regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        Bars.find({$or: [{'name': regex}, {'city': regex}, {'country': regex}]}, function(err, bars) {
+            if (err) {
+                console.log(err);
+            } else {
         
-    } else {
+                var numResults = bars.length;
+                console.log(numResults);
+                res.render("./bars/index", {bars: bars, page: 'bars', numResults: numResults})
+            }
+            
+        });
+    } else if (req.query.sort) {
+        var criteria = [
+        {type: 'rateAvg', property: 'avgRating', order: -1},
+        {type: 'rateCount', property: 'ratingCount', order: -1},
+        {type: 'priceLow', property: 'price', order: 1},
+        {type: 'priceHigh', property: 'price', order: -1}
+        ];
+        
+        criteria.forEach(function(crit){
+            if (req.query.sort === crit.type) {
+                Bars.find({}).sort([[crit.property, crit.order]]).exec(function(err, sortedBars) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.render("./bars/index", {bars: sortedBars, page: 'bars'});
+                    }
+                })
+            }
+        })
+    }
+    
+    else {
         // eval(require('locus'));
         Bars.find({}, function(err,bars){
             if (err) {
                 console.log(err)
             }
             else {
-                res.render("./bars/index", {bars: bars, page: 'bars'});        
+                res.render("./bars/index", {bars: bars, page: 'bars'});
             }
         })
     }
@@ -127,5 +163,36 @@ router.delete("/:id", middleware.checkBarOwnership, function(req, res) {
         res.redirect("/bars/");
     })
 })
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
+
+function sortBy(criterion) {
+    var bars = [];
+    var criteria = [
+        {type: 'rateAvg', property: 'avgRating', order: -1},
+        {type: 'rateCount', property: 'ratingCount', order: -1},
+        {type: 'priceLow', property: 'price', order: 1},
+        {type: 'priceHigh', property: 'price', order: -1}
+    ]
+    criteria.forEach(function(crit){
+        if (criterion === crit.type) {
+            Bars.find({}).sort([[crit.property, crit.order]]).exec(function(err, sortedBars) {
+                sortedBars.forEach(function(bar){
+                    bars.push(bar);
+                    
+                })
+                console.log(bars);
+                                   
+                // eval(require('locus'));
+                // return bars;
+            });
+        }
+
+    })
+    // console.log(bars);
+
+} 
 
 module.exports = router;
