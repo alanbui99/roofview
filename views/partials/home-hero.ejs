@@ -1,0 +1,37 @@
+<section
+    class="py-5"
+    style='
+        background: url("images/<%= heroRooftop.name %>.jpg") no-repeat center center fixed !important;
+        background-size: cover !important;
+        -webkit-background-size: cover !important;
+        -moz-background-size: cover !important;
+        -o-background-size: cover !important;
+        height: calc(100vh - 49px);
+    '
+>
+    <div class="container col-md-6 d-flex flex-column justify-content-center align-items-center h-75">
+        <a id="brand" class="py-3" style="font-size: 5rem !important; text-decoration: none;" href="/">Roofview</a>
+        <form action="/rooftops" method="GET" class="input-group form-inline my-2 my-lg-0">
+            <div class="input-group w-100">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Search</span>
+                </div>
+                <input id="searchBar" name="search" class="form-control input-large" type="search" placeholder="name, city, county, state, country" aria-label="Search" />
+                <button class="input-group-append btn btn-dark my-2 my-sm-0" type="submit">
+                    <i class="fa fa-search mt-1"></i></button>
+            </button>
+
+            </div>
+
+        </form>
+        <p class="text-center white-text-highlight mt-1" style="font-size:0.95em;">
+            Share your experiences and enjoy the spectacular views of 1000+ rooftop places around the world
+        </p>        
+    </div>
+    <div style="position: absolute; bottom: 10px; left: 50%;">
+        <div class="text-center " style="position: relative; left: -50%">
+            <a href="/rooftops/<%= heroRooftop.id %>" class="white-text-highlight"><%= heroRooftop.name %></a>
+          </div>
+        
+    </div>
+</section>

@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var commentSchema = new mongoose.Schema({
+var reviewSchema = new mongoose.Schema({
     text: String,
     rating: {
         type: Number,
@@ -11,10 +11,11 @@ var commentSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"
         },
-        username: String
+        firstName: String,
+        lastName: String
     }
 }, {
     timestamps: true
 });
 
-module.exports = mongoose.model("Comment", commentSchema);
+module.exports = mongoose.model("Review", reviewSchema);

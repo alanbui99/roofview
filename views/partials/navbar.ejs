@@ -1,0 +1,51 @@
+<nav id="navBar" class="navbar navbar-top navbar-expand-xl navbar-dark bg-info py-1 fixed-top">
+    <div class="container">
+        <a id="brand" class="navbar-brand pt-0" href="/">Roofview</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <% if (typeof home == 'undefined') { %>
+                <ul class="navbar-nav mr-auto">
+                    <li>
+                        <form action="/rooftops" method="GET" class="input-group form-inline my-2 my-lg-1 pl-md-5">
+                            <input id="searchBar" name="search" class="form-control input-large mr-sm-2 rounded-lg" type="search" placeholder="name, city, county, state, country" aria-label="Search">
+    
+                            <button class="input-group-append btn btn-dark my-2 my-sm-0" type="submit">
+                                    <i class="fa fa-search mt-1"></i></button>
+                            </button>
+    
+                        </form>
+                    </li>
+                </ul>
+    
+
+
+            <% } %>
+
+
+            <ul class="navbar-nav ml-auto">
+                <% if (!currentUser) { %>
+                    <li id="login" class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li id="signup" class="nav-item">
+                        <a class="nav-link" href="/signup">Sign Up</a>
+                    </li>
+                    <% } else { %>
+                        <li id="user" class="nav-item dropdown active">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user mr-2"></i>
+                                <%= `${currentUser.firstName} ${currentUser.lastName[0]}.` || currentUser.username %>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Profile</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/logout">Logout</a>
+                            </div>
+                        </li>
+                    <% } %>
+            </ul>
+        </div>
+    </div>
+</nav>

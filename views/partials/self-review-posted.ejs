@@ -1,0 +1,113 @@
+<article>
+    <h4 class="text-info py-2">Your Review</h4>
+    <div class="media" id="self-review-posted">
+        <img
+            class="d-flex mr-3 rounded-circle"
+            src="http://placehold.it/50x50"
+            alt=""
+        />
+        <div class="media-body">
+            <div class="p-0 m-0">
+                <div class="d-inline">
+                    <% if (review.author.firstName) { %>
+                    <strong
+                        ><%= `${review.author.firstName}
+                        ${review.author.lastName[0]}` %></strong
+                    >
+                    <% } %>
+                    <small class="ml-1 text-muted">
+                        <%= review.createdAt.toLocaleString().split(',')[0] %>
+                    </small>
+
+                    <div class="d-inline float-right">
+                        <button
+                            class="btn pr-0 pt-0"
+                            onclick="toggleSelfReviewEdit()"
+                        >
+                            <i class="fas fa-pen"></i>
+                        </button>
+                        <button
+                            class="btn pl-1 pt-0"
+                            data-toggle="modal"
+                            data-target="#deletereviewWarning<%=review._id%>"
+                        >
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <% for (let i = 0; i < review.rating; i++) {%>
+                    <i class="fas fa-star text-warning"></i>
+                    <% } %> <% for (let i = 0; i < 5 - review.rating; i++) {%>
+                    <i class="far fa-star text-warning"></i>
+                    <% } %>
+                </div>
+            </div>
+
+            <p class="mr-5"><%=review.text%></p>
+            <div class="float-right d-inline mb-2"></div>
+        </div>
+    </div>
+
+    <div id="self-review-edit" style="display: none">
+        <i
+            class="fas fa-window-close position-absolute"
+            style="right: 1.25em; cursor: pointer"
+            onclick="toggleSelfReviewEdit()"
+        ></i>
+        <form
+            action="/rooftops/<%= rooftopId %>/reviews/<%= review._id %>?_method=PUT"
+            method="POST"
+        >
+            <% if (invalidReview) { %> <%- include("./review-edit", {error:
+            invalidReview.error, prevInput: review})%> <% } else { %> <%-
+            include("./review-edit", {error: null, prevInput: review})%> <% }%>
+        </form>
+    </div>
+</article>
+
+<div
+    class="modal fade"
+    id="deletereviewWarning<%=review._id%>"
+    tabindex="-1"
+    role="dialog"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="modal-title" id="exampleModalLongTitle">
+                    <strong>Confirm Deletion</strong>
+                </p>
+                <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                Are you sure you want to delete this review?
+            </div>
+            <div class="modal-footer justify-content-center">
+                <form
+                    action="/rooftops/<%= rooftop._id %>/reviews/<%= review._id %>?_method=DELETE"
+                    method="POST"
+                    class="float-right"
+                >
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                >
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

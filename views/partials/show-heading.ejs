@@ -1,0 +1,41 @@
+<section class="py-3">
+    <h3><%= rooftop.name %></h3>
+    <div class="row">
+        <div class="col-md-8">
+            <% if (rooftop.reviews.length > 0) { %>
+                <span class="fas fa-star text-warning"></span>
+                <span><%= rooftop.avgRating.toFixed(1) %></span>
+                <span class="font-weight-light">(<%= rooftop.reviews.length %>)</span>
+                <span class="mx-1">&#8226</span>
+            <% } %>
+
+            <% if (rooftop.priceLevel) { %>
+                <span class="font-weight-bold text-success"><% for (let i = 0; i < rooftop.priceLevel; i++) { %>$<% } %></span>
+                <span class="mx-1">&#8226</span>
+            <% } %>
+
+            <% if (rooftop.locality) { %>
+                <span class="font-weight-bold text-secondary"><%= rooftop.locality + ', ' %></span>
+            <% } %>
+
+            <% if (rooftop.areaLevel2) { %>
+                <span class="font-weight-bold text-secondary"><%= rooftop.areaLevel2 + ', ' %></span>
+            <% } %>
+
+            <% if (rooftop.areaLevel1) { %>
+                <span class="font-weight-bold text-secondary"><%= rooftop.areaLevel1 + ', ' %></span>
+            <% } %>
+
+            <% if (rooftop.country) { %>
+                <span class="font-weight-bold text-secondary"><%= rooftop.country %></span>
+            <% } %>
+        </div>
+    </div>
+
+    <h5 class="mt-2">
+        <% rooftop.highlights.forEach(highlight => { %>
+            <span class="badge badge-pill badge-light font-weight-light text-uppercase"><%= highlight %></span>
+        <% }) %>
+    </h5>
+
+</section>

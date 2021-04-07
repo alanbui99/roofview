@@ -1,0 +1,91 @@
+<%- include("../partials/header") %>
+
+<section class="container py-5">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-sm-10 col-md-9 col-lg-8">
+      <div class="card shadow border-0">
+        <div class="card-body">
+          <h1 class="text-center"><%= purpose === 'edit' ? `Edit ${prevInput.name}` : 'Add New Rooftop' %></h1>
+          <p class="text-muted"><small>Fields marked * are required</small></p>
+
+          <% if (purpose === 'new') { %>
+          <form action="/rooftops/new" method="POST" novalidate class="needs-validation">
+          <% } else { %>
+          <form action="/rooftops/<%= prevInput.id %>/edit?_method=PUT" method="POST" novalidate class="needs-validation">
+          <% } %>
+            <div class="form-group">
+              <label>Rooftop Name*</label>
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                id="barName"
+                value="<%= typeof prevInput !== 'undefined' ?  prevInput.name : ''  %>"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="imageURL">Image URL*</label>
+              <input
+                type="text"
+                class="form-control"
+                name="image"
+                id="imageURL"
+                value="<%= typeof prevInput !== 'undefined' ?  prevInput.image : ''  %>"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="desc">Description*</label>
+              <textarea
+                class="form-control"
+                name="desc"
+                id="desc"
+                required
+              ><%= typeof prevInput !== 'undefined' ?  prevInput.desc : ''  %></textarea>
+            </div>
+            <div class="form-group">
+              <label for="address">Address*</label>
+              <input
+                class="form-control"
+                type="text"
+                name="address"
+                id="address"
+                placeholder="230 Fifth Avenue, New York, NY"
+                value="<%= typeof prevInput !== 'undefined' ?  prevInput.location || prevInput.address : ''  %>"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label>How expensive is this rooftop?*</label>
+              <select
+                class="form-control"
+                name="price"
+                value="<%= typeof prevInput !== 'undefined' ?  prevInput.price : ''  %>"
+                required
+              >
+                <option value="$">$</option>
+                <option value="$$">$$</option>
+                <option value="$$$">$$$</option>
+                <option value="$$$$">$$$$</option>
+                <option value="$$$$$">$$$$$</option>
+              </select>
+            </div>
+
+            <% if (typeof errMsg !== 'undefined') { %>
+              <p class="text-danger"><%= errMsg %></p>
+            <% } %>  
+
+            <button class="btn btn-info btn-block mb-2">Submit</button>
+          </form>
+          <!-- <a href="/rooftops" class="text-info">Go back</a> -->
+        </div>
+      </div>
+    </div>
+    <div class="col"></div>
+  </div>
+</section>
+
+<%- include("../partials/footer") %>

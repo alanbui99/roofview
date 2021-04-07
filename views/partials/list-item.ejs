@@ -1,0 +1,83 @@
+<div id="item-<%= idx %>" class="row py-3">
+    <div class="col-5">
+        <div
+            id="carousel-thumbnail-photos-<%= rooftop.id %>"
+            class="carousel slide"
+            data-ride="carousel"
+            data-interval="false"
+        >
+            <a href="/rooftops/<%=rooftop.id%>">
+                <div class="carousel-inner" style="cursor: pointer">
+                    <% rooftop.photos.forEach((photo, idx) => { %>
+                        <% if (idx < 3) { %>
+                            <div class="carousel-item <%= idx === 0 ? 'active' : '' %>">
+                                <img
+                                    class="list-thumbnail__img img-card-top d-block w-100"
+                                    src="<%= photo %>"
+                                    alt="First slide"
+                                />
+                            </div>        
+                        <% } %>
+                    <% }) %>
+                </div>
+            </a>
+
+            <a
+                class="carousel-control-prev"
+                href="#carousel-thumbnail-photos-<%= rooftop.id %>"
+                role="button"
+                data-slide="prev"
+            >
+                <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                ></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a
+                class="carousel-control-next"
+                href="#carousel-thumbnail-photos-<%= rooftop.id %>"
+                role="button"
+                data-slide="next"
+            >
+                <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                ></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <div class="col-7">
+        <a class="text-info" href="/rooftops/<%=rooftop.id%>">
+            <h5>
+                <%= rooftop.name %>
+            </h5>
+        </a>
+
+        <div class="mb-1">
+            <% rooftop.highlights.forEach(highlight => { %>
+            <span class="badge badge-pill badge-light font-weight-normal"
+                ><%= highlight %></span
+            >
+            <% }) %>
+        </div>
+
+        <div class="d-inline-flex ">
+            <%- include("../partials/star-result", {rating:
+                Math.round(rooftop.avgRating)})%>
+            <span class="text-muted ml-2">(<%= rooftop.reviews.length %>)</span>
+            <% if (rooftop.priceLevel) { %>
+                <span class="mx-2 text-muted">&#8226</span>
+                <span class="font-weight-bold text-success"><% for (let i = 0; i < rooftop.priceLevel; i++) { %>$<% } %></span>
+            <% } %>
+        </div>
+
+        <p class="text-muted"><%- rooftop.desc.substring(0, 120) + ' . . .' %></p>
+
+        
+
+    </div>
+</div>
+
+<hr />

@@ -1,16 +1,4 @@
 var mongoose = require('mongoose');
-var BlogComments = require("./blog-comments");
-
-// var blogCommentSchema = new mongoose.Schema({
-//     text: String,
-//     author: {
-//         id: {
-//             type: mongoose.Schema.Types.ObjectId,
-//             ref: "User"
-//         },
-//         username: String
-//     }
-// });
 
 var blogSchema = new mongoose.Schema({
     title: String,

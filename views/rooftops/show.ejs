@@ -1,0 +1,82 @@
+<%- include("../partials/header") %>
+<main class="container py-4">
+    <%- include("../partials/show-heading", {rooftop}) %>
+    <%- include("../partials/show-gallery", {rooftop}) %>
+    <%- include("../partials/show-CTAs") %>    
+
+    <section id="infoSection" class="py-1">
+        <div class="row">
+            <div class="col-md-8">
+                <hr class="my-3"/>
+                <article>
+                    <h4 class="text-info py-2">About</h4>
+                    <%- rooftop.desc %>
+                </article>
+                <hr class="my-3"/>
+                <%- include("../partials/show-details", {rooftop}) %>   
+
+            </div>
+            <div class="col-md-4">
+                <div class="card mt-3 shadow">
+                    <div id="map" style="height: 20rem;"></div>
+                    <div class="p-2">
+                        <div class="font-weight-bold text-center"><%= rooftop.formattedAddress.split(',')[0] %></div>
+                        <div class="text-center"><%= rooftop.formattedAddress.split(',').slice(1) %></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="my-3"/>
+
+    <section id="infoSection" class="py-1">
+        <div class="row">
+            <div class="col-md-8">
+                <article id="reviewsSection">
+                    <% if (selfReview) { %>
+                        <%- include("../partials/self-review-posted", {review: selfReview, rooftopId: rooftop._id}) %>                
+                    <% } else { %>
+                        <%- include("../partials/self-review-unposted", {invalidReview: invalidReview || null})%>                
+                    <% } %>
+            
+                    <hr class="my-3"/>
+                    
+                    <% if (rooftop.reviews.length > 0) { %>
+                        <h4 class="text-info py-2">Highlighted Reviews</h4>
+                        <% rooftop.reviews.forEach(review => { %>
+                            <%- include("../partials/review", {rooftop, review})%>
+                        <% }) %>    
+                    <% } %>
+                </article>
+
+            </div>
+            <div class="col-md-4">
+
+            </div>
+
+</main>
+
+<script type="text/javascript" src="/js/show.js"></script>
+
+<script>
+  function initMap() {
+    const lat = <%= rooftop.lat %>;
+    const lng = <%= rooftop.lng %>;
+    const center = {lat: lat, lng: lng };
+    const map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: center,
+        scrollwheel: true
+    });
+
+    var marker = new google.maps.Marker({
+        position: center,
+        map: map
+    });
+  }
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0mzlfcUEriVkArjuRNRfqOwDt4kP-_aY&callback=initMap"></script>
+
+<%- include("../partials/footer") %>

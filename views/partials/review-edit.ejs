@@ -1,0 +1,20 @@
+<link rel="stylesheet" type="text/css" href="/stylesheets/star.css" />
+
+<div class="form-inline">
+    <span class="pb-4 mr-3 text-muted">Select your rating:</span>
+    <fieldset class="starability-coinFlip">
+        <input type="radio" id="no-rate<%= prevInput ? prevInput._id : '' %>" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
+        <% for (let i = 1; i <= 5; i++) { %>
+            <input type="radio" id="rate<%= i %><%= prevInput ? prevInput._id : '' %>" name="review[rating]" value="<%= i %>" <%= prevInput && prevInput.rating == i ? 'checked' : '' %> />
+            <label for="rate<%= i %><%= prevInput ? prevInput._id : '' %>"><%= i %> stars.</label>    
+        <% } %>
+        <span class="starability-focus-ring"></span>
+    </fieldset>
+</div>
+<div class="form-group">
+    <textarea placeholder="What do you think about this rooftop?" name="review[text]" class="form-control" rows="3" required><%= prevInput ? prevInput.text : ''%></textarea>
+</div>
+<% if (error) { %>
+    <p class="text-danger"><%= error %></p>
+<% } %>
+<button type="submit" class="btn btn-info">Submit</button>

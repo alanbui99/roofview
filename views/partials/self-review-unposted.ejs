@@ -1,0 +1,14 @@
+<article>
+    <h4 class="text-info py-2">Leave a Review</h4>
+    <form
+        action="/rooftops/<%= rooftop._id %>/reviews"
+        method="POST"
+        novalidate
+        class="needs-validation"
+    >
+        <% if (invalidReview) { %> <%- include("../partials/review-edit",
+        {error: invalidReview.error, prevInput: invalidReview})%> <% } else { %>
+        <%- include("../partials/review-edit", {error: null, prevInput: null})%>
+        <% }%>
+    </form>
+</article>

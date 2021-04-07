@@ -1,9 +1,8 @@
 body {
-    /* background-image: url("https://images.unsplash.com/photo-1505860125062-3ce932953cf5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"); */
     background-size: cover;
-    background-color: #fff;      
+    background-color: #fff;
     margin-top: 48px;
-    font-family: 'Vollkorn', serif;
+    font-family: "Lato", sans-serif;
 }
 /* @media (max-width: 979px) {
   body {
@@ -18,15 +17,15 @@ body {
 }
 
 #startItem {
-    padding-top:20px;
+    padding-top: 20px;
 }
 .btn:focus {
-  outline: none;
-  box-shadow: none;
+    outline: none;
+    box-shadow: none;
 }
 
 #delete-form {
-    display:inline;
+    display: inline;
 }
 
 #slideshow {
@@ -40,28 +39,21 @@ body {
 }
 
 .jumbotronText {
-    font-family: 'EB Garamond', serif;
+    font-family: "EB Garamond", serif;
     color: white;
     margin-bottom: 0;
     margin-top: 10px;
-    text-shadow: 5px 5px 5px #0E0F0F;
+    text-shadow: 5px 5px 5px #0e0f0f;
     font-weight: normal;
 }
 
 #brand {
-    font-family: 'EB Garamond', serif;
-    font-weight: bolder;
-    font-size: 1.5em;
-}
-
-.thumbnail {
-    height: 180px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-}
-
-.homeCard {
-    border-radius: 15px;
+    font-family: "EB Garamond", serif;
+    font-weight: bold;
+    font-size: 2rem;
+    color: white;
+    text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1),
+        0px 18px 23px rgba(0, 0, 0, 0.1);
 }
 
 #searchBar {
@@ -84,12 +76,20 @@ body {
 }
 
 #rating {
-  font-family: "Times New Roman", Times, serif;
+    font-family: "Times New Roman", Times, serif;
 }
 
 .sectionHeader {
     font-size: 30px;
     font-weight: bold;
+}
+
+.white-text-highlight {
+    color: white;
+    text-shadow: 0.1em 0 black, 0 0.1em black, -0.1em 0 black, 0 -0.1em black,
+        -0.1em -0.1em black, -0.1em 0.1em black, 0.1em -0.1em black,
+        0.1em 0.1em black;
+    text-decoration: none;
 }
 
 /* Google Maps */
@@ -102,7 +102,7 @@ body {
     max-height: 400px;
 }
 
-#commentSection {
+#reviewsSection {
     border: none;
 }
 
@@ -114,4 +114,51 @@ body {
     height: 300px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
+}
+
+@media (min-width: 576px) {
+    .transform-on-hover:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15) !important;
+        transition: 0.4s ease;
+    }
+}
+
+/* thumbnail */
+
+.thumbnail {
+    border-radius: 20px;
+}
+
+.thumbnail__img {
+    height: 10.5em;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+/* show-gallery */
+.show-gallery__photo {
+    border-radius: 20px;
+}
+.show-gallery__photo.first-photo {
+    width: 50vw;
+    height: 25.35vw;
+}
+
+.show-gallery__photo.other-photo {
+    width: 25vw;
+    height: 12.5vw;
+}
+
+/* show-details */
+
+.show-detail__text {
+    font-weight: 450;
+}
+
+/* list-thumbnail */
+
+.list-thumbnail__img {
+    height: 12em;
+    border-radius: 20px;
 }

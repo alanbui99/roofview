@@ -1,0 +1,133 @@
+<%- include("../partials/header") %>
+<style type="text/css">
+    /* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+    #map {
+        height: calc(100vh - 50px) !important;
+        position: fixed !important;
+        max-width: 32vw;
+    }
+</style>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+
+<main class="container-fluid mt-5">
+    <section class="row">
+        <div class="col-md-8">
+            <!-- <%- include("../partials/list-filters.ejs", {numResults}) %>  -->
+            <% if (typeof numResults !== 'undefined') { %>
+            <h3 class="text-center py-4">
+                <% if (numResults > 1) { %> <%= numResults %> rooftop were
+                found <% } else { %> <%= numResults %> rooftops was found <% }
+                %>
+                near <span class="text-capitalize font-weight-bold"><%= search %></span>
+            </h3>
+            <% } %> <% rooftops.forEach((rooftop, idx) => { %> <%-
+            include("../partials/list-item.ejs", {rooftop, idx}) %> <% }) %>
+        </div>
+        <div class="col-md-4">
+            <div id="map"></div>
+        </div>
+    </section>
+</main>
+
+<script>
+        function initMap() {
+            try {
+                const rooftops = <%- JSON.stringify(rooftops) %>;
+
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 12,
+        center: { lat: rooftops[0].lat, lng: rooftops[0].lng },
+        scrollwheel: true
+    });
+
+    const infoWin = new google.maps.InfoWindow();
+
+    const markers = rooftops.map((rooftop, i) => {
+        const marker = new google.maps.Marker({
+            position: {lat: rooftop.lat, lng: rooftop.lng},
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+        })
+
+        const correspondingItem = document.getElementById(`item-${i}`)
+
+        google.maps.event.addDomListener(correspondingItem, 'mouseover', function(e) {
+            toggleBounce(marker)
+        })
+
+        google.maps.event.addDomListener(correspondingItem, 'mouseout', function(e) {
+            toggleBounce(marker)
+        })
+
+        google.maps.event.addListener(marker, 'mouseover', function(e) {
+            toggleBounce(marker)
+            infoWin.setContent(
+                `
+                <div class="card border-0">
+                    <img
+                        class="img-card-top d-block w-100"
+                        style="height: 10em;"
+                        src="${rooftop.photos[0]}"
+                    />
+
+                    <div class="card-body px-0">
+                        <div class="card-title text-center font-weight-bold"> ${rooftop.name.length > 27 ?  rooftop.name.substring(0, 27) + '...' : rooftop.name }</div>
+                        <div class="row">
+                            <div class="col-7 d-flex justify-content-start">
+                                <small class="font-weight-light">
+                                    ${rooftop.formattedAddress}
+                                </small>
+                            </div>
+                            <div class="col-5 d-flex justify-content-end">
+                                <small>
+                                    <span class="fas fa-star text-warning"></span>
+                                    <strong>${rooftop.avgRating ? rooftop.avgRating.toFixed(1) : ''}</strong>
+                                    <span class="font-weight-light">(${rooftop.reviews.length})</span>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `);
+            infoWin.open(map, marker);
+        })
+
+        google.maps.event.addListener(marker, 'mouseout', function(e) {
+            toggleBounce(marker)
+            infoWin.close();
+        })
+
+        google.maps.event.addListener(marker, 'click', function(e) {
+            window.location.href = `/rooftops/${rooftop._id.toString()}`
+        })
+
+        return marker;
+    });
+    // Add a marker clusterer to manage the markers.
+    new MarkerClusterer(map, markers, {
+        imagePath:
+            "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+    });
+
+            } catch (err) {
+                console.log(err)
+            }
+
+        }
+
+        function toggleBounce(marker) {
+            if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+            } else {
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+            }
+        }
+</script>
+
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0mzlfcUEriVkArjuRNRfqOwDt4kP-_aY&callback=initMap&libraries=&v=weekly"
+    async
+></script>
+<%- include("../partials/footer") %>

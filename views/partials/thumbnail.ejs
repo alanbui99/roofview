@@ -1,0 +1,64 @@
+<div class="thumbnail card shadow transform-on-hover border-0 mt-4">
+    <div
+        id="carousel-thumbnail-photos-<%= rooftop.id %>"
+        class="carousel slide"
+        data-ride="carousel"
+        data-interval="false"
+    >
+        <a href="/rooftops/<%=rooftop.id%>">
+            <div class="carousel-inner" style="cursor: pointer;">
+                <% rooftop.photos.forEach((photo, idx) => { %>
+                <div class="carousel-item <%= idx === 0 ? 'active' : '' %>">
+                    <img
+                        class="thumbnail__img img-card-top d-block w-100"
+                        src="<%= photo %>"
+                        alt="First slide"
+                    />
+                </div>
+                <% }) %>
+            </div>            
+        </a>
+
+        <a
+            class="carousel-control-prev"
+            href="#carousel-thumbnail-photos-<%= rooftop.id %>"
+            role="button"
+            data-slide="prev"
+        >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a
+            class="carousel-control-next"
+            href="#carousel-thumbnail-photos-<%= rooftop.id %>"
+            role="button"
+            data-slide="next"
+        >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <div class="card-body pb-1">
+        <a class="text-info" href="/rooftops/<%=rooftop.id%>">
+            <h6 class="card-title"><%= rooftop.name.length > 27 ? rooftop.name.substring(0, 27) + '...' : rooftop.name%></h6>
+        </a>
+        <div class="row">
+            <div class="col-7 d-flex justify-content-start">
+                <small class="font-weight-light">
+                    <%= (rooftop.locality || rooftop.areaLevel2 || rooftop.areaLevel1) + ', '%>
+                    <%= rooftop.country %>
+                </small>
+            </div>
+            <div class="col-5 d-flex justify-content-end">
+                <% if (rooftop.reviews.length > 0) { %>
+                    <small>
+                        <span class="fas fa-star text-warning"></span>
+                        <strong><%= rooftop.avgRating.toFixed(1) %></strong>
+                        <span class="font-weight-light">(<%= rooftop.reviews.length %>)</span>
+                    </small>    
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>

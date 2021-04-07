@@ -1,6 +1,6 @@
 var express = require("express"),
     router = express.Router(),
-    Blogs = require('../models/blogs');
+    Blogs = require('../models/Blog');
 
 var middleware = require("../middleware/index");
 

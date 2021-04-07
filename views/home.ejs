@@ -1,7 +1,9 @@
 <%- include("partials/header") %>
 
 
-<section id="carouselExampleIndicators" class="carousel slide d-none d-md-block" data-ride="carousel">
+<%- include("partials/home-hero.ejs") %>
+
+<!-- <section id="carouselExampleIndicators" class="carousel slide d-none d-md-block" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -11,14 +13,14 @@
     <div class="carousel-item active">
         <div id="header" class="carousel-caption d-none d-md-block jumbotron jumbotron-fluid">
             <p class="lead jumbotronText">ENJOY THE SPECTACULAR VIEWS OF</p>
-            <h5 class="display-3 jumbotronText">Rooftop Bars</h5>
+            <h5 class="display-3 jumbotronText">Rooftops</h5>
         </div>
         <img id="slideshow" class="d-block w-100" src="https://i.ibb.co/bNsp5pm/sheraton-edited.jpg" alt="First slide">
       </div>
     <div class="carousel-item">
         <div id="header" class="carousel-caption d-none d-md-block jumbotron jumbotron-fluid">
             <p class="lead jumbotronText">SHARE YOUR EXPERIENCES WITH</p>
-            <h5 class="display-3 jumbotronText">Rooftop Bars</h5>
+            <h5 class="display-3 jumbotronText">Rooftops</h5>
         </div>
       <img id="slideshow" class="d-block w-100" src="https://i.ibb.co/r73MXqX/image.jpg" alt="Second slide">
     </div>
@@ -26,7 +28,7 @@
       <img id="slideshow" class="d-block w-100" src="https://i.ibb.co/jzw9xdC/azul-rooftop-nyc.jpg" alt="Third slide">
         <div id="header" class="carousel-caption d-none d-md-block jumbotron jumbotron-fluid">
             <p class="lead jumbotronText">PLAN YOUR TRIPS TO</p>
-            <h5 class="display-3 jumbotronText">Rooftop Bars</h5>
+            <h5 class="display-3 jumbotronText">Rooftops</h5>
         </div>
     </div>
   </div>
@@ -38,109 +40,22 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</section>
+</section> -->
 
 
 <section id="barHome" class="container-fluid pt-5">
     <h3 class="text-center sectionHeader">
-        <i class="fas fa-glass-martini-alt mr-3"></i>Highlighted Bars
+        <i class="fas fa-glass-martini-alt mr-3"></i>Highlighted Rooftops
     </h3>
-    <!-- <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm">
-            </div>
-            <span class="col-sm d-flex justify-content-center d-block">
-                <h3 class="text-center sectionHeader">
-                    <i class="fas fa-glass-martini-alt mr-3"></i>Highlighted Bars
-                </h3>
-            </span>
-            <span class="col-sm d-flex justify-content-center d-block">
-                <a href="/bars/new">
-                    <button id="addBar" class="btn btn-outline-dark float-right">
-                        <i class="fas fa-plus-circle mr-1"></i>Add Bar
-                    </button>
-                </a>
-            </span>
-        </div>
-    </div>
-     -->
+
     <div class="row d-flex justify-content-center">
-        <% bars.forEach(function(bar){ %>
-        <div class="card-deck col-12 col-sm-6 col-xl-3">
-            <div class="homeCard card shadow border-0 mt-4">
-                <a href="/bars/<%=bar.id%>">
-                    <img src="<%=bar.image%>" class="card-img-top thumbnail img-fluid" alt="Image"> 
-                </a>
-                <div class="card-body pb-1">
-                    <ul class="list-inline mb-0" style="height: 1.5em;">
-                        <li class="list-inline-item">
-                        <a class="text-info" href="/bars/<%=bar.id%>">
-                            <h5 class="card-title"><%= bar.name %></h5>
-                        </a>
-                        </li>
-                        <li id="thumbnailPrice"class="list-inline-item float-right text-success">
-                            <%= bar.price %>
-                        </li>    
-                    </ul>
-                    <ul class="list-inline mb-4" style="height: 0.25em">
-                        <% if (bar.comments.length > 0) { %>
-                        <li class="list-inline-item float-right"><small class="fas fa-star text-danger"></small>
-                            <strong><%= bar.avgRating.toFixed(1) %></strong>
-                        </li>
-                        <% } %>
-                        <li id="rating" class="list-inline-item text-muted">
-                            <% if (bar.comments.length > 1) {%>
-                            <%= bar.comments.length %> Reviews
-                            <% } else {%>
-                            <%= bar.comments.length %> Review
-                            <%}%>
-                        </li>
-                    </ul>
-                    <small class="text-muted pt-2">
-                        <i class="fas fa-map-marker-alt mr-1"></i><%= bar.city %>, <%= bar.country %>
-                    </small>
-                </div>
-                
-            </div>
-        </div>
+        <% rooftops.forEach(rooftop => { %>
+            <div class="card-deck col-sm-6 col-xl-3">
+                <%- include("./partials/thumbnail", {rooftop}) %>
+            </div>    
         <% }) %>
     </div>
 </section>
 
-<hr class="mt-5 mb-3">
-
-<section id="gallery">
-    <h3 class="mt-4 sectionHeader d-inline d-flex justify-content-center mb-4">
-        <i class="fas fa-blog mr-2"></i>Highlighted Blogs
-    </h3>
-    <div class="container-fluid">
-        <div class="row d-flex justify-content-center">
-            <% blogs.forEach(function(blog) { %>
-                <div class="card-deck col-lg-4 mb-4">
-                    <div class="homeCard card shadow">
-                        <a href="/blogs/<%=blog.id%>">
-                            <img id="homeBlogThumbnail" class="card-img-top img-fluid" src="<%= blog.image %>" alt="">
-                        </a>
-
-                        <div class="card-body">
-                            <a href="/blogs/<%=blog.id%>">
-                                <h5 class="card-title text-info"><%= blog.title %></h5>
-                            </a>
-                            <p class="card-text"><%- blog.body.substring(0,150) %>...</p>
-                            <a href="/blogs/<%=blog.id%>" class="btn btn-outline-info btn-sm">Read more</a>
-                        </div>
-                        <div class="card-footer">
-                            <p class="text-muted"><%= blog.created.toDateString() %> by
-                                <a href="#" class="text-info"><%=blog.author.username%></a>
-                            </p>
-                        </div>
-                    </div>
-                </div>                
-            <% }) %>
-
-        </div>
-    </div>
-</section>
-       
 <%- include("partials/footer") %>
 

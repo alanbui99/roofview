@@ -1,0 +1,20 @@
+<%- include("partials/header") %>
+
+<div class="container py-5">
+    <div class="col-md-8 mx-auto">
+        <div class="card shadow text-center">
+            <div class="card-header lead">We are sorry - there is an error!</div>
+            <div class="card-body">
+                <h4>
+                    <span class="text-danger font-weight-bold"><%= err.statusCode %></span> - 
+                    <span class="text-muted"><%= err.message %></span>
+                </h4>
+                <a href="/">
+                    <button class="btn btn-primary"><i class="fa fa-home"></i> Go to Homepage</button>
+                </a>
+            </div>
+        </div>    
+    </div>
+</div>
+
+<%- include("partials/footer") %>

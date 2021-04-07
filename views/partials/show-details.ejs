@@ -1,0 +1,99 @@
+<article>
+    <h4 class="text-info mb-4">Details</h4>
+    <% if (rooftop.formattedPhoneNumber || rooftop.website ||
+    rooftop.openingHours) { %>
+
+    <div class="row">
+        <div class="col-md-6">
+            <% if (rooftop.formattedPhoneNumber) { %>
+            <div class="row mb-4">
+                <div class="col-2"><i class="fas fa-phone fa-lg"></i></div>
+                <div class="col-10 show-detail__text">
+                    <%= rooftop.formattedPhoneNumber %>
+                </div>
+            </div>
+            <% } %> <% if (rooftop.website) { %>
+            <div class="row mb-4">
+                <div class="col-2">
+                    <i class="fas fa-external-link-alt fa-lg"></i>
+                </div>
+                <div class="col-10">
+                    <a
+                        href="<%= rooftop.website %>"
+                        class="show-detail__text text-dark"
+                        >Website</a
+                    >
+                </div>
+            </div>
+            <% } %> <% if (rooftop.openingHours) { %>
+            <div class="row mb-4">
+                <div class="col-2">
+                    <i class="far fa-clock fa-lg"></i>
+                </div>
+                <div class="col-10">
+                    <% rooftop.openingHours.weekday_text.forEach(day => { %>
+                    <div>
+                        <span class="show-detail__text"
+                            ><%= day.split(': ')[0] %></span
+                        >
+                        <span class="float-right"
+                            ><%= day.split(': ')[1] %></span
+                        >
+                    </div>
+                    <% }) %>
+                </div>
+            </div>
+
+            <% } %>
+        </div>
+
+        <div class="col-md-1"></div>
+
+        <div class="col-md-5">
+            <% if (rooftop.height) { %>
+            <div class="row mb-4">
+                <div class="col-2">
+                    <i class="fas fa-ruler-vertical fa-lg"></i>
+                </div>
+                <div class="col-10"><%= rooftop.height %></div>
+            </div>
+            <% } %> <% if (rooftop.view) { %>
+            <div class="row mb-4">
+                <div class="col-2">
+                    <i class="fas fa-eye fa-lg"></i>
+                </div>
+                <div class="col-10"><%= rooftop.view %></div>
+            </div>
+            <% } %> <% if (rooftop.food) { %>
+            <div class="row mb-4">
+                <div class="col-2">
+                    <i class="fas fa-utensils fa-lg"></i>
+                </div>
+                <div class="col-10"><%= rooftop.food %></div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+    <% } else { %>
+
+    <div class="row">
+        <% if (rooftop.height) { %>
+        <div class="col-md-4">
+            <i class="fas fa-ruler-vertical fa-lg mr-2"></i>
+            <%= rooftop.height %>
+        </div>
+        <% } %> <% if (rooftop.view) { %>
+        <div class="col-md-4">
+            <i class="fas fa-eye fa-lg mr-2"></i>
+            <%= rooftop.view %>
+        </div>
+        <% } %> <% if (rooftop.food) { %>
+        <div class="col-md-4">
+            <i class="fas fa-utensils fa-lg mr-2"></i>
+            <%= rooftop.food %>
+        </div>
+        <% } %>
+    </div>
+
+    <% } %>
+</article>

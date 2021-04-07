@@ -1,0 +1,27 @@
+<ul class="list-inline pt-3 row">
+    <div class="list-inline-item col-4 text-center">
+        <a class="nav-link dropdown-toggle text-dark font-weight-bold d-inline" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <form class="sortForm" action="/rooftops" method="GET">
+            <input type="text" name="sort" value="rateAvg" class="d-none">
+            <button type="submit" class="dropdown-item">Highest Rated</button>
+          </form>
+          <form class="sortForm" action="/rooftops" method="GET">
+            <input type="text" name="sort" value="rateCount" class="d-none">
+            <button type="submit" class="dropdown-item">Most Reviewed</button>
+          </form>
+          <form class="sortForm" action="/rooftops" method="GET">
+            <input type="text" name="sort" value="priceLow" class="d-none">
+            <button type="submit" class="dropdown-item">Price: Low to High</button>
+          </form>
+          <form class="sortForm" action="/rooftops" method="GET">
+            <input type="text" name="sort" value="priceHigh" class="d-none">
+            <button type="submit" class="dropdown-item">Price: High to Low</button>
+          </form>
+        </div>
+    </div>
+
+        
+    <div class="col-4"></div>
+    
+</ul>

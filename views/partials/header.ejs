@@ -1,77 +1,40 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
-    <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
 
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-        <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
-        <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,500&family=Vollkorn&display=swap" rel="stylesheet">
-        <title>RooftopReview</title>
-    </head>
-    
-  <body>
-    <nav id="navBar" class="navbar navbar-top navbar-expand-lg navbar-dark bg-info py-1 fixed-top">
-        <div class="container">
-            <a id="brand" class="navbar-brand pt-0" href="/">RooftopReview</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <ul class="navbar-nav mr-auto">
-                    <li id="bars" class="nav-item">
-                        <a class="nav-link" href="/bars"><i class="fas fa-glass-martini-alt"></i>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+            crossorigin="anonymous"
+        />
+        <!-- Fontawesome -->
+        <link
+            rel="stylesheet"
+            href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+            integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+            crossorigin="anonymous"
+        />
+        <!-- Google fonts -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,500&family=Lato:wght@100;300;400;500;700&display=swap"
+            rel="stylesheet"
+        />
+        <!-- Custom stylesheet -->
+        <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
 
-Bars</a>
-                    </li>
-                    <li id="blogs" class="nav-item">
-                        <a class="nav-link" href="/blogs"> <i class="fas fa-blog"></i> Blogs</a>
-                    </li>
-                    <li>
-                        <form action="/bars" method="GET" class="input-group form-inline my-2 my-lg-0">
-                            <input id="searchBar" name="search" class="form-control input-large mr-sm-2" type="search" placeholder="Search Bars by Name, City & Country" aria-label="Search">
-                            
-                                <button class="input-group-append btn btn-dark my-2 my-sm-0" type="submit">
-                                    <i class="fa fa-search"></i></button>
-                                </button>
-                            
-                        </form>
-                    </li>
-                </ul>
-                
-                
-                <ul class="navbar-nav ml-auto">
-                    <% if (!currentUser) { %> 
-                    <li id="login" class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
-                    <li id="signup" class="nav-item">
-                        <a class="nav-link" href="/register">Sign Up</a>
-                    </li>
-                    <% } else { %>
-                    <li id="user" class="nav-item dropdown active">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-user mr-2"></i><%= currentUser.username %>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Profile</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/logout">Logout</a>
-                        </div>
-                    </li>
-                    <% } %>
-                </ul>
-            </div>
-        </div>
-      </nav>
-      
-      <% if(errorFlash && errorFlash.length > 0) { %>
-          <div class="container alert alert-danger text-center" role="alert"> <%= errorFlash %></div>
-      <% } %>
-      
-      <% if(successFlash && successFlash.length > 0) { %>
-          <div class="container alert alert-success text-center" role="alert"> <%= successFlash %></div>
-    <% } %>
+        <link rel="shortcut icon" href="#">
+        <title>Roofview</title>
+    </head>
+
+    <body>
+        <%- include("./navbar", {currentUser}) %>
+    </body>
+</html>
