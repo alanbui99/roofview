@@ -1,37 +1,46 @@
-<section
+<!-- <section
     class="py-5"
     style='
-        background: url("images/<%= heroRooftop.name %>.jpg") no-repeat center center fixed !important;
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("images/<%= heroRooftop.name %>.jpg") no-repeat center center fixed !important;
         background-size: cover !important;
         -webkit-background-size: cover !important;
         -moz-background-size: cover !important;
         -o-background-size: cover !important;
+        background-color: rgba(0, 0, 0, 0.5);
         height: calc(100vh - 49px);
     '
->
-    <div class="container col-md-6 d-flex flex-column justify-content-center align-items-center h-75">
-        <a id="brand" class="py-3" style="font-size: 5rem !important; text-decoration: none;" href="/">Roofview</a>
+> -->
+    <div class="container w-50">
+        <div class="text-center">
+            <a id="brand" class="hero-jumbotron__brand" href="/">Roofview</a>
+        </div>
+
+        <div class="mb-3">
+            <div class="text-center font-weight-bold" style="color: skyblue; font-size:1.5em; text-shadow: 2px 2px 2px #000;">1000+ rooftop places around the world</div>
+            <div class="text-center text-white font-weight-bold font-italic">for you to review and choose from</div>
+        </div>
+
         <form action="/rooftops" method="GET" class="input-group form-inline my-2 my-lg-0">
             <div class="input-group w-100">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">Search</span>
+                    <span class="input-group-text bg-white border-0 font-weight-bold">Search</span>
                 </div>
-                <input id="searchBar" name="search" class="form-control input-large" type="search" placeholder="name, city, county, state, country" aria-label="Search" />
-                <button class="input-group-append btn btn-dark my-2 my-sm-0" type="submit">
+                <input id="searchBar" name="search" class="form-control border-0" type="search" placeholder="rooftop name, city, county, state, country" aria-label="Search" />
+                <button class="input-group-append btn btn-secondary my-2 my-sm-0" type="submit">
                     <i class="fa fa-search mt-1"></i></button>
-            </button>
+                </button>
 
             </div>
 
         </form>
-        <p class="text-center white-text-highlight mt-1" style="font-size:0.95em;">
-            Share your experiences and enjoy the spectacular views of 1000+ rooftop places around the world
-        </p>        
+
+        <div style="position: absolute; bottom: 10px; left: 50%;">
+            <div class="text-center " style="position: relative; left: -50%">
+                <a href="/rooftops/<%= heroRooftop.id %>" class="text-white" style="text-decoration: none !important;"><%= heroRooftop.name %></a>
+            </div>
+            
+        </div>
+    
+
     </div>
-    <div style="position: absolute; bottom: 10px; left: 50%;">
-        <div class="text-center " style="position: relative; left: -50%">
-            <a href="/rooftops/<%= heroRooftop.id %>" class="white-text-highlight"><%= heroRooftop.name %></a>
-          </div>
-        
-    </div>
-</section>
+</div>

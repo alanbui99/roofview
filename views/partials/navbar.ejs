@@ -1,6 +1,21 @@
-<nav id="navBar" class="navbar navbar-top navbar-expand-xl navbar-dark bg-info py-1 fixed-top">
+<% if (typeof home != 'undefined') { %>
+<div style='
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("images/<%= heroRooftop.name %>.jpg") no-repeat center center fixed !important;
+    background-size: cover !important;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    -o-background-size: cover !important;
+    height: 100vh;'
+>
+<% } %>
+
+<nav id="navBar" class="navbar navbar-expand-lg navbar-dark <%= typeof home == 'undefined' ? 'fixed-top' : '' %>"
+    style="background-color: <%= typeof home != 'undefined' ? 'rgba(0,0,0,0)' : '#343a40' %>"
+>
     <div class="container">
-        <a id="brand" class="navbar-brand pt-0" href="/">Roofview</a>
+        <% if (typeof home == 'undefined') { %>
+            <a id="brand" class="navbar-brand p-0" href="/">Roofview</a>
+        <% } %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -9,12 +24,13 @@
                 <ul class="navbar-nav mr-auto">
                     <li>
                         <form action="/rooftops" method="GET" class="input-group form-inline my-2 my-lg-1 pl-md-5">
-                            <input id="searchBar" name="search" class="form-control input-large mr-sm-2 rounded-lg" type="search" placeholder="name, city, county, state, country" aria-label="Search">
-    
-                            <button class="input-group-append btn btn-dark my-2 my-sm-0" type="submit">
+                            <div class="input-group w-100">
+                                <input id="searchBar" name="search" class="form-control border-0" type="search" placeholder="rooftop name, city, county, state, country" aria-label="Search" />
+                                <button class="input-group-append btn btn-light my-2 my-sm-0" type="submit">
                                     <i class="fa fa-search mt-1"></i></button>
-                            </button>
-    
+                                </button>
+                
+                            </div>
                         </form>
                     </li>
                 </ul>

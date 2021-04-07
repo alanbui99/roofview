@@ -45,11 +45,11 @@
 
 <section id="barHome" class="container-fluid pt-5">
     <h3 class="text-center sectionHeader">
-        <i class="fas fa-glass-martini-alt mr-3"></i>Highlighted Rooftops
+        <i class="fas fa-glass-martini-alt mr-3"></i>Featured Rooftops
     </h3>
 
     <div class="row d-flex justify-content-center">
-        <% rooftops.forEach(rooftop => { %>
+        <% featuredRooftops.forEach(rooftop => { %>
             <div class="card-deck col-sm-6 col-xl-3">
                 <%- include("./partials/thumbnail", {rooftop}) %>
             </div>    
